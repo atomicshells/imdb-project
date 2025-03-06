@@ -16,5 +16,6 @@ dependencies = [
     "jupyter",
     "numpy",
     "scipy",
-    "nltk"
+    "nltk",
+    "os"
 ]
