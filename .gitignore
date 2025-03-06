@@ -43,10 +43,10 @@ models/
 *.pkl
 *.db
 
-# Plots / Images
-*.png
-*.jpg
-*.svg
+# # Plots / Images
+# *.png
+# *.jpg
+# *.svg
 
 # Notebook outputs (optional, depends if you want clean notebooks in GitHub)
 notebooks/output/
