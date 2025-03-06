@@ -1,0 +1,12 @@
+pandas
+pyarrow
+polars
+pyspark
+dask
+matplotlib
+seaborn
+scikit-learn
+jupyter
+numpy
+scipy
+nltk

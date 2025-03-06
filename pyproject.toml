@@ -1,7 +1,20 @@
 [project]
 name = "imdb-project"
 version = "0.1.0"
-description = "Add your description here"
+description = "GCash DSAI Project - IMDb Analysis"
 readme = "README.md"
-requires-python = "3.10"
-dependencies = []
+requires-python = ">=3.10"
+dependencies = [
+    "pandas",
+    "pyarrow",
+    "polars",
+    "pyspark",
+    "dask",
+    "matplotlib",
+    "seaborn",
+    "scikit-learn",
+    "jupyter",
+    "numpy",
+    "scipy",
+    "nltk"
+]
