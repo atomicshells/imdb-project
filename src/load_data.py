@@ -1,47 +1,63 @@
-from pathlib import Path
 import polars as pl
+import os
 
-# Base paths
-BASE_DIR = Path(__file__).resolve().parent.parent
-IMDB_DIR = BASE_DIR / 'data' / 'raw' / 'imdb'
-MOVIELENS_DIR = BASE_DIR / 'data' / 'raw' / 'movie-lens'
-TMDB_DIR = BASE_DIR / 'data' / 'raw' / 'tmdb'
+# Define base paths
+IMDB_PATH = os.path.join('..', 'data', 'raw', 'imdb')
+MOVIELENS_PATH = os.path.join('..', 'data', 'raw', 'movie-lens')
+TMDB_PATH = os.path.join('..', 'data', 'raw', 'tmdb')
 
-# Load functions
+# IMDb Loaders
 def load_imdb_basics():
-    return pl.read_csv(IMDB_DIR / 'title.basics.tsv', separator='\t', null_values='\\N')
+    return pl.read_csv(os.path.join(IMDB_PATH, 'title.basics.tsv'), separator='\t', null_values='\\N')
 
 def load_imdb_akas():
-    return pl.read_csv(IMDB_DIR / 'title.akas.tsv', separator='\t', null_values='\\N')
+    return pl.read_csv(os.path.join(IMDB_PATH, 'title.akas.tsv'), separator='\t', null_values='\\N')
+
+def load_imdb_crew():
+    return pl.read_csv(os.path.join(IMDB_PATH, 'title.crew.tsv'), separator='\t', null_values='\\N')
+
+def load_imdb_episode():
+    return pl.read_csv(os.path.join(IMDB_PATH, 'title.episode.tsv'), separator='\t', null_values='\\N')
+
+def load_imdb_principals():
+    return pl.read_csv(os.path.join(IMDB_PATH, 'title.principals.tsv'), separator='\t', null_values='\\N')
 
 def load_imdb_ratings():
-    return pl.read_csv(IMDB_DIR / 'title.ratings.tsv', separator='\t', null_values='\\N')
+    return pl.read_csv(os.path.join(IMDB_PATH, 'title.ratings.tsv'), separator='\t', null_values='\\N')
 
+def load_imdb_names():
+    return pl.read_csv(os.path.join(IMDB_PATH, 'name.basics.tsv'), separator='\t', null_values='\\N')
+
+# MovieLens Loaders (normal CSVs)
 def load_movielens_movies():
-    return pl.read_csv(MOVIELENS_DIR / 'movies.csv')
+    return pl.read_csv(os.path.join(MOVIELENS_PATH, 'movies.csv'))
 
 def load_movielens_ratings():
-    return pl.read_csv(MOVIELENS_DIR / 'ratings.csv')
+    return pl.read_csv(os.path.join(MOVIELENS_PATH, 'ratings.csv'))
 
 def load_movielens_tags():
-    return pl.read_csv(MOVIELENS_DIR / 'tags.csv')
+    return pl.read_csv(os.path.join(MOVIELENS_PATH, 'tags.csv'))
 
+def load_movielens_links():
+    return pl.read_csv(os.path.join(MOVIELENS_PATH, 'links.csv'))
+
+# TMDB Loader
 def load_tmdb_movies():
-    return pl.read_csv(TMDB_DIR / 'tmdb_5000_movies.csv')
+    return pl.read_csv(os.path.join(TMDB_PATH, 'tmdb_2023.csv'))
 
+# Wrapper to Load All
 def load_all_data():
-    data = {
+    return {
         "imdb_basics": load_imdb_basics(),
         "imdb_akas": load_imdb_akas(),
+        "imdb_crew": load_imdb_crew(),
+        "imdb_episode": load_imdb_episode(),
+        "imdb_principals": load_imdb_principals(),
         "imdb_ratings": load_imdb_ratings(),
+        "imdb_names": load_imdb_names(),
         "movielens_movies": load_movielens_movies(),
         "movielens_ratings": load_movielens_ratings(),
         "movielens_tags": load_movielens_tags(),
-        "tmdb_movies": load_tmdb_movies()
+        "movielens_links": load_movielens_links(),
+        "tmdb_movies": load_tmdb_movies(),
     }
-    return data
-
-if __name__ == "__main__":
-    all_data = load_all_data()
-    for name, df in all_data.items():
-        print(f"Loaded {name} with {df.shape[0]} rows and {df.shape[1]} columns")
