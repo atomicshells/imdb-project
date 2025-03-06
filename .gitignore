@@ -1,13 +1,19 @@
-# Python-generated files
+# Python artifacts
 __pycache__/
 *.py[oc]
+*.py[cod]
+*.so
+*.pyd
+*.pyo
 build/
 dist/
 wheels/
 *.egg-info
 
 # Virtual environments
-.venv
+.env/
+.venv/
+venv/
 
 # Datasets
 data/
@@ -15,3 +21,40 @@ models/
 *.tsv
 *.csv
 *.parquet
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# IDE files
+.vscode/
+*.swp
+*.swo
+*.idea/
+
+# Data and models (specific to your project)
+data/
+models/
+*.csv
+*.tsv
+*.gz
+*.zip
+*.parquet
+*.h5
+*.pkl
+*.db
+
+# Plots / Images
+*.png
+*.jpg
+*.svg
+
+# Notebook outputs (optional, depends if you want clean notebooks in GitHub)
+notebooks/output/
+
+# Logs
+logs/
+*.log
+
+# Other temp files
+.DS_Store
+Thumbs.db
